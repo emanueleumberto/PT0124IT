@@ -1,5 +1,7 @@
 import './App.css';
 import Card from './components/Card';
+import MyComponentClass from './components/MyComponentClass';
+import MyComponentFunc from './components/MyComponentFunc';
 
 let data = [
   {title:"Welcome", description:"Welcome to Card"}, 
@@ -10,7 +12,9 @@ let data = [
 function App() {
   return (
     <>
-      {data.map(ele => <Card title={ele.title} description={ele.description}/>)}
+      {/* {data.map(ele => <Card title={ele.title} description={ele.description}/>)} */}
+      <MyComponentClass />
+      <MyComponentFunc />
     </>
   );
 }
