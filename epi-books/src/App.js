@@ -9,6 +9,7 @@ import history from './books/history.json';
 import horror from './books/horror.json';
 import { useState } from 'react';
 import UserComponent from './components/UserComponent';
+import { ThemeContext, AuthContext } from './modules/Contexts';
 
 function App() {
 
@@ -24,22 +25,31 @@ function App() {
   let setType = pippo[1]; */
 
   let [type, setType] = useState('fantasy');
+  const [search, setSearch] = useState('');
+  const handleSearch = (e) => setSearch(e.target.value);
+
+  let [theme, setTheme] = useState('light');
+  let [authUser, setAuthUser] = useState('Mario Rossi');
 
   return (
     <>
-      <MyNav /> 
-      <Container className="my-3">
-        <Welcome />
-        <Button variant="dark" className='m-1' onClick={() => setType('history')}>History</Button>
-        <Button variant="dark" className='m-1' onClick={() => setType('fantasy')}>Fantasy</Button>
-        <Button variant="dark" className='m-1' onClick={() => setType('horror')}>Horror</Button>
-        {type === 'fantasy' && <AllTheBooks books={fantasy} />}
-        {type === 'history' && <AllTheBooks books={history} /> }
-        {type === 'horror' && <AllTheBooks books={horror} /> }
+    <ThemeContext.Provider value={[theme, setTheme]}>
+      <AuthContext.Provider value={[authUser]}>
+        <MyNav search={search} handleSearch={handleSearch} /> 
+        <Container className="my-3">
+          <Welcome />
+          <Button variant="dark" className='m-1' onClick={() => setType('history')}>History</Button>
+          <Button variant="dark" className='m-1' onClick={() => setType('fantasy')}>Fantasy</Button>
+          <Button variant="dark" className='m-1' onClick={() => setType('horror')}>Horror</Button>
+          {type === 'fantasy' && <AllTheBooks books={fantasy} searchQuery={search} />}
+          {type === 'history' && <AllTheBooks books={history} searchQuery={search} /> }
+          {type === 'horror' && <AllTheBooks books={horror} searchQuery={search} /> }
 
-        <UserComponent />
-      </Container>
-      <MyFooter />
+          {/* <UserComponent /> */}
+        </Container>
+        <MyFooter />
+      </AuthContext.Provider>
+    </ThemeContext.Provider>
     </>
   );
 }

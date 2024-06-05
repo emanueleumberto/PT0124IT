@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, ListGroup } from 'react-bootstrap'
 
-export default function SingleComment({comment}) {
+export default function SingleComment({comment,setAdd,add}) {
 
   const removeComment = (comment) => {
     /* console.log(comment) */
@@ -13,8 +13,9 @@ export default function SingleComment({comment}) {
     }).then(response => response.json())
       .then(data => {
         // se tutto va a buon fine
-        console.log(data)
-        alert('Il commento è stato eliminato!!!!')
+        /* console.log(data) */
+        /* alert('Il commento è stato eliminato!!!!') */
+        setAdd(!add);
       })
       .catch(error => console.error(error))
   }

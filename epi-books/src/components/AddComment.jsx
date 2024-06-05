@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
-export default function AddComment({elementId}) {
+export default function AddComment({elementId, setAdd, add}) {
 
   const [comments, setComments] = useState({comment: '', rate: 0, elementId: elementId})
 
@@ -31,8 +31,9 @@ export default function AddComment({elementId}) {
     }).then(response => response.json())
       .then(data => {
         // se tutto va a buon fine
-        console.log(data)
-        alert('Il commento è stato aggiunto!!!!')
+        /* console.log(data) */
+        /* alert('Il commento è stato aggiunto!!!!') */
+        setAdd(!add)
         setComments({comment: '', rate: 0, elementId: elementId})
       })
       .catch(error => console.error(error))
