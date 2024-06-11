@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import AddComment from './AddComment';
 import CommentList from './CommentList';
 import { Alert, Spinner } from 'react-bootstrap';
+/* import axios from 'axios'; */
+import axios from '../modules/ApiAxios'
 
 
 const URLCommentsAPI = 'https://striveschool-api.herokuapp.com/api/books/';
@@ -16,7 +18,7 @@ export default function CommentArea({ asin }) {
 
     useEffect(() => {
       setIsLoading(true);
-        fetch(URLCommentsAPI+asin+"/comments/", {
+        /* fetch(URLCommentsAPI+asin+"/comments/", {
             headers: { Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjNjY2M2NzgxODQ0MjAwMTUzNzU3NWIiLCJpYXQiOjE3MTcxNjAzMTcsImV4cCI6MTcxODM2OTkxN30.bqrIYq7VrpiQgG5X885HS2AfENPgUz0dSGUkrW357Ek' }
         }).then( response => response.json() )
           .then( data => {
@@ -24,6 +26,14 @@ export default function CommentArea({ asin }) {
                   setIsLoading(false);
                 })
           .catch(err => {
+            setIsError(true)
+            setIsLoading(false);
+          }) */
+         axios.get(URLCommentsAPI+asin+"/comments/")
+          .then(response => {
+            setComments(response.data);
+            setIsLoading(false);
+          }).catch(err => {
             setIsError(true)
             setIsLoading(false);
           })

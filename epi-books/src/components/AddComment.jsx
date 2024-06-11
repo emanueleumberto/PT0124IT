@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+/* import axios from 'axios' */
+import axios from '../modules/ApiAxios'
 
 export default function AddComment({elementId, setAdd, add}) {
 
@@ -8,20 +10,22 @@ export default function AddComment({elementId, setAdd, add}) {
   let setCommentHandler = (e) => {
     setComments({
       ...comments, // {comment: '', rate: 0, elementId: elementId}
-      comment: e.target.value
+      comment: e.target.value,
+      elementId: elementId
     })
   }
 
   let setRateHandler = (e) => {
     setComments({
       ...comments, // {comment: '', rate: 0, elementId: elementId}
-      rate: e.target.value
+      rate: e.target.value,
+      elementId: elementId
     })
   }
 
   let sendComment = () => {
     console.log(comments)
-    fetch('https://striveschool-api.herokuapp.com/api/comments/', {
+    /* fetch('https://striveschool-api.herokuapp.com/api/comments/', {
       method: 'POST',
       body: JSON.stringify(comments),
       headers: { 
@@ -31,12 +35,16 @@ export default function AddComment({elementId, setAdd, add}) {
     }).then(response => response.json())
       .then(data => {
         // se tutto va a buon fine
-        /* console.log(data) */
-        /* alert('Il commento è stato aggiunto!!!!') */
+        // console.log(data)
+        // alert('Il commento è stato aggiunto!!!!')
         setAdd(!add)
         setComments({comment: '', rate: 0, elementId: elementId})
       })
-      .catch(error => console.error(error))
+      .catch(error => console.error(error)) */
+    axios.post('/comments/', comments).then(response => {
+      setAdd(!add)
+      setComments({comment: '', rate: 0, elementId: elementId})
+    }).catch(error => console.error(error))
   }
 
   return (

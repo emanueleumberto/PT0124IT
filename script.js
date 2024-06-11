@@ -119,3 +119,35 @@ function func() {
 let testFunc = func;
 
 console.log(testFunc());
+
+
+
+let bool = true;
+let num = 8;
+
+0 => false
+1,2,3,... => true
+
+'' => false
+'sdkg' => true
+
+null => false
+{jd} => true
+
+undefined => false
+
+let t = '10.5';
+
+let vb = Boolean(num);
+let v = !!num;
+let nn = Number(t); // 10
+let nf = parseFloat(t); //10.5
+let ni = parseInt(t); //10
+let n = +t; // 10
+
+
+if(num) {
+    console.log('Sono dentro IF')
+} else {
+    console.log('Sono dentro ELSE')
+}
