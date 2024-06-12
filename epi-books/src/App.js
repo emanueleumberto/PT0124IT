@@ -10,6 +10,9 @@ import horror from './books/horror.json';
 import { useState } from 'react';
 import UserComponent from './components/UserComponent';
 import { ThemeContext, AuthContext } from './modules/Contexts';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import NotFound from './components/NotFound';
+import BookDetail from './components/BookDetail';
 
 function App() {
 
@@ -35,19 +38,29 @@ function App() {
     <>
     <ThemeContext.Provider value={[theme, setTheme]}>
       <AuthContext.Provider value={[authUser]}>
+        <BrowserRouter>
+
         <MyNav search={search} handleSearch={handleSearch} /> 
         <Container className="my-3">
-          <Welcome />
+           <Welcome />
+           <Routes>
+              <Route index element={<AllTheBooks books={fantasy} searchQuery={search} />} />
+              <Route path='/details/:asin' element={<BookDetail />} />
+              <Route path='*' element={<NotFound />} />
+           </Routes>
+          {/*
           <Button variant="dark" className='m-1' onClick={() => setType('history')}>History</Button>
           <Button variant="dark" className='m-1' onClick={() => setType('fantasy')}>Fantasy</Button>
           <Button variant="dark" className='m-1' onClick={() => setType('horror')}>Horror</Button>
           {type === 'fantasy' && <AllTheBooks books={fantasy} searchQuery={search} />}
           {type === 'history' && <AllTheBooks books={history} searchQuery={search} /> }
-          {type === 'horror' && <AllTheBooks books={horror} searchQuery={search} /> }
+          {type === 'horror' && <AllTheBooks books={horror} searchQuery={search} /> } */}
 
           {/* <UserComponent /> */}
         </Container>
         <MyFooter />
+
+        </BrowserRouter>
       </AuthContext.Provider>
     </ThemeContext.Provider>
     </>

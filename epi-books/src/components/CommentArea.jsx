@@ -6,7 +6,7 @@ import { Alert, Spinner } from 'react-bootstrap';
 import axios from '../modules/ApiAxios'
 
 
-const URLCommentsAPI = 'https://striveschool-api.herokuapp.com/api/books/';
+/* const URLCommentsAPI = 'https://striveschool-api.herokuapp.com/api/books/'; */
 
 export default function CommentArea({ asin }) {
 
@@ -29,7 +29,7 @@ export default function CommentArea({ asin }) {
             setIsError(true)
             setIsLoading(false);
           }) */
-         axios.get(URLCommentsAPI+asin+"/comments/")
+         axios.get('/books/'+asin+"/comments/")
           .then(response => {
             setComments(response.data);
             setIsLoading(false);

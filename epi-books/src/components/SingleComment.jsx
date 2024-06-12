@@ -20,7 +20,7 @@ export default function SingleComment({comment,setAdd,add}) {
         setAdd(!add);
       })
       .catch(error => console.error(error)) */
-      axios.delete('https://striveschool-api.herokuapp.com/api/comments/' + comment._id).then(response => {
+      axios.delete('/comments/' + comment._id).then(response => {
         setAdd(!add);
       })
       .catch(error => console.error(error))
