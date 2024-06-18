@@ -1,15 +1,15 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import fantasy from '../books/fantasy.json';
-import { Card, Col, ListGroup, Row } from 'react-bootstrap';
+import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap';
 import CommentArea from './CommentArea';
 
 export default function BookDetail() {
 
     const { asin } = useParams();
     const book = fantasy.find( b => b.asin === asin); // {} || undefined
-    
-    console.log(book)
+    const navigate = useNavigate();
+
   return (
     <Row>
         <Col md={8}>
@@ -28,6 +28,7 @@ export default function BookDetail() {
                     </ListGroup>
                 </Col>
             </Row>
+            <Button variant="outline-dark" className='w-100 my-3' onClick={() => navigate('/')}>Back to Home</Button>  
         </Col>
         <Col md={4}>
             <CommentArea asin={asin}  />

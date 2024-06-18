@@ -48,8 +48,8 @@ export default function AddComment({elementId, setAdd, add}) {
   }
 
   return (
-    <Form>
-      <Form.Group className="mb-3">
+    <Form >
+      <Form.Group className="my-3">
         <Form.Control 
                 type="text" 
                 placeholder="Inserisci qui il tuo commento"

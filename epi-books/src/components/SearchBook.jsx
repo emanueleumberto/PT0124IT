@@ -7,8 +7,7 @@ export default function SearchBook({ search, handleSearch }) {
         <Form.Group className="m-3">
           <Form.Control 
                   type="search" 
-                  placeholder="Cerca un libro..."
-                  value={search}
+                  placeholder='Cerca un libro'
                   onChange={handleSearch}
           />
         </Form.Group> 

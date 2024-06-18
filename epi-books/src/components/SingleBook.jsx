@@ -14,8 +14,13 @@ export default function SingleBook({ book, selected, setSelected }) {
 
   return (
     <Col>
-      <Card bg={themeCtx} data-bs-theme={themeCtx} style={{ width: "18rem", border: selected === book.asin ? '2px solid red' : 'none' }} 
-      onClick={() => setSelected(book.asin)}>
+      <Card 
+            bg={themeCtx} 
+            data-bs-theme={themeCtx} 
+            style={{ width: "18rem", border: selected === book.asin ? '2px solid red' : 'none' }} 
+            onClick={() => setSelected(book.asin)}
+            data-testid="book-card"
+          >
         <Card.Img variant="top" src={book.img} />
         <Card.Body>
           <Card.Title>{book.title}</Card.Title>
